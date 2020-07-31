@@ -215,12 +215,14 @@ public:
 		// If data is avilable
 		if (child >= 0 && child < count) {
 
+			int old_priority = heap[child]; // Tempiory variable to store the old priority.
+
 			heap[child] = pri; // Replace the data with given priority.
 
 			// Shifting the heap according the need
 
 			// If priority is greater then the data
-			if (pri > heap[child])
+			if (pri > old_priority)
 				shift_up(child); // then shift up the heap.
 
 			else

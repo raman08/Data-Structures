@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Structure to store the proberties of the queue.
+// Structure to store the properties of the queue.
 struct pq_item {
 
 	int value; // Value of the item

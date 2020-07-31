@@ -205,11 +205,15 @@ public:
 		if (isEmpty())
 			return;
 
+
 		// Find the index of the given data.
 		int child = find(data);
 
+
 		// If data is avilable
 		if (child >= 0 && child < count) {
+
+			int old_priority = heap[child]; // Tempiory variable to store the old priority.
 
 			heap[child] = pri; // Replace the data with given priority.
 
