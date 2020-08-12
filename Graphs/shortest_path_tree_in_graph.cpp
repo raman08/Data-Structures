@@ -20,38 +20,43 @@ class Graph_Path {
 	vector<vector<int> > cost;
 
 
-
-
+	// Method to vreate the shortest path tree from a given vertex.
 	vector<int> shortest_path_tree(int s) {
 
-		vector<int> dist(adj.size(), INT_MAX);
-		vector<int> prev(adj.size(), INT_MIN);
 
-		dist[s] = 0;
+		vector<int> dist(adj.size(), INT_MAX); // Initialzing the dist vector to store the distance of a  vertices from the given vertix.
+		vector<int> prev(adj.size(), INT_MIN); // prev store the the vertex from which it came from.
 
-		queue<int> Q;
+		dist[s] = 0; // distance  of the vertex from itself is zero.
 
-		Q.push(s);
+		queue<int> Q; // Queue for BFS.
 
+		Q.push(s); // Adding the given node.
+
+
+		// While queue is not empty
 		while (!Q.empty()) {
 
-			int u = Q.front();
+			int u = Q.front(); // Removing the first element.
 			Q.pop();
 
+			// For all the vertex attached from the given vertex
 			for (auto i = adj[u].begin(); i != adj[u].end(); i++) {
 
+				// If distance is INF
 				if (dist[*i] == INT_MAX) {
 
-					Q.push(*i);
+					Q.push(*i); // Add it to the queue.
 
-					dist[*i] = dist[u] + 1;
-					prev[*i] = u;
+					dist[*i] = dist[u] + 1; // Incerse the distance of the vertex.
+
+					prev[*i] = u; // Setting the parent vertex.
 
 				}
 			}
 		}
 
-		return prev;
+		return prev; // Returning the path.
 
 	}
 
@@ -93,27 +98,32 @@ public:
 	}
 
 
-
+	// Method to return the path of the given vertex.
 	vector<int> path(int s, int e) {
 
+		// Use zero based indexing.
 		s -= 1;
 		e -= 1;
 
-		auto prev = shortest_path_tree(s);
+		auto prev = shortest_path_tree(s); // Getting the path
 
-		vector<int> result;
+		vector<int> result; // Variable to store the path.
 
+		// Finding the required path.
 		while (e != s) {
 
-			result.push_back(e);
+			result.push_back(e); // Adding the vertex to the result.
 
-			e = prev[e];
+			e = prev[e]; // Backtracking it.
+
 
 		}
 
+
+		// Reversing the path.
 		reverse(result.begin(), result.end());
 
-		return result;
+		return result; // Returning the path.
 
 	}
 
